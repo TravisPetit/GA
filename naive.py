@@ -38,5 +38,29 @@ def naive():
            max_set = subset
     return max_set
 
-x = naive()
-print(x)
+#x = naive()
+#print(x)
+
+#---------------
+
+def G_complement():
+    """ Sets the value of E to the E complement """
+    global E
+    temp = []
+    VxV = asymetric_tuples(V)
+    for tuple in VxV:
+        if not tuple in E:
+            temp.append(tuple)
+    E = temp
+
+def adjacent(v):
+    """ Returns a list with all the vertices adjacent to v """
+    #TODO
+    #return list(filter(lambda w : {v,w} in E, E)) # :(
+    pass
+
+def degree(v):
+    """ Returns the number of adjacent vertices to v """
+    return len(adjacent(v))
+
+#print(adjacent(1))
