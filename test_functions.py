@@ -1,16 +1,43 @@
-import functions as fun, unittest
+import functions as fun
+import unittest
 
 class TestFunctions(unittest.TestCase):
 
-    def test_is_clique(self):
-        S = [1,3,2]
-        E = [{1,2}, {3,1}, {3,2}]
-        self.assertTrue(fun.is_clique(S, E))
+    @classmethod
+    def setUp(self):
+        global V, S, E
+        V = [1,2,3,4,5,6,7,8,9,10]
+        S = [1,3,9,2]
+        E = [{1,3}, {1,9}, {1,2}, {3,9}, {3,2}, {9,2}, {2, 10}, {3, 10}]
 
-    def test_empty_set_is_clique(self):
-        S = []
-        E = [{1,2}, {3,1}, {3,2}]
+
+    def test_powerset(self):
+        X = fun.powerset(V)
+        self.assertIn({1,2}, X)
+        self.assertIn(set(), X)
+        self.assertNotIn([{1,2,3}], X)
+
+
+    def test_is_clique(self):
         self.assertTrue(fun.is_clique(S, E))
+        self.assertFalse(fun.is_clique([1,4,5], E))
+        self.assertTrue(fun.is_clique([], E))
+
+
+    def test_asymetric_tuples(self):
+        X = fun.asymetric_tuples(V)
+        self.assertIn({1,3}, X)
+        self.assertNotIn({3,3}, X)
+        self.assertNotIn({1,2,3}, X)
+
+
+    def test_G_complement(self):
+        Ec = fun.G_complement(V, E)
+        self.assertIn({7,8}, Ec)
+        self.assertNotIn({1,2}, Ec)
+
+
+    #def test_adjacent(self):
 
 
 if __name__ == '__main__':
