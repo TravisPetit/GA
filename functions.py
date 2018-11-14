@@ -29,6 +29,10 @@ def asymetric_tuples(S):
                 temp.append({i,j})
     return temp
 
+# pretty but too complicated
+#def asymetric_tuples(S):
+#    return list(filter(lambda x : len(x) == 2, [{x,y} for x,y in zip(*[iter(S)]*2)]))
+
 
 def G_complement(V, E):
     """ Returns E complement """
@@ -60,12 +64,18 @@ def degree(v, V, E):
     return len(adjacent(v, V, E))
 
 
-#TODO
-def BFS(V,E):
-    """ Partitions V into a list of connected sets """
-    pass
-
-
-def connected(V, E):
-    """ Returns true if V, E is a connected graph """
-    return len(BFS(V, E)) == 1
+def connected_components(V,E):
+    """ Returns a list of the connected components of V using BFS """
+    visited = []
+    components = []
+    while visited != V:
+        current = list( set(V) - set(visited) )[0]
+        subgraph = [current]
+        visited.append(current)
+        queue = list( set(adjacent(current, V, E)) - set(visited) )
+        while len(queue) > 0:
+            el = queue.pop()
+            visited.append(el)
+            subgraph.append(el)
+        components.append(subgraph)
+    return components
