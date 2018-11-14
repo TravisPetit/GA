@@ -12,7 +12,7 @@ def powerset(S):
 
 
 def is_clique(S, E):
-    """ Returns true if S is a clique in V """
+    """ Returns true if S is a clique in (V,E) """
     SxS = asymetric_tuples(S)
     for pair in SxS:
         if pair not in E:
@@ -31,7 +31,7 @@ def asymetric_tuples(S):
 
 
 def G_complement(V, E):
-    """ Sets the value of E to the E complement """
+    """ Returns E complement """
     temp = []
     VxV = asymetric_tuples(V)
     for pair in VxV:
@@ -53,14 +53,21 @@ def generate_random_graph():
     return V, E
 
 
-def adjacent(v):
+def adjacent(v, V, E):
     """ Returns a list with all the vertices adjacent to v """
-    #TODO
-    #return list(filter(lambda w : {v,w} in E, E)) # :(
-    pass
+    return list(filter(lambda w : {v,w} in E, V))
 
-def degree(v):
+
+def degree(v, V, E):
     """ Returns the number of adjacent vertices to v """
-    pass
-    #return len(adjacent(v))
+    return len(adjacent(v, V, E))
 
+
+def BFS(V,E):
+    """ Partitions V into a list of connected sets """
+    pass
+
+
+def connected(V, E):
+    """ Returns true if V, E is a connected graph """
+    return len(BFS(V, E)) == 1

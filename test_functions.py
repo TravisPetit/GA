@@ -37,7 +37,14 @@ class TestFunctions(unittest.TestCase):
         self.assertNotIn({1,2}, Ec)
 
 
-    #def test_adjacent(self):
+    def test_adjacent(self):
+        X = fun.adjacent(3, V, E)
+        self.assertEqual(X, [1,2,9,10])
+
+
+    def test_degree(self):
+        X = fun.adjacent(3, V, E)
+        self.assertEqual(fun.degree(3, V, E), 4)
 
 
 if __name__ == '__main__':
