@@ -42,14 +42,11 @@ def G_complement(V, E):
 
 def generate_random_graph():
     """ Used for testing purposes """
-    size = randint(5, 25)
-    counter = 0
-    V = [x for x in range (size)]
+    V = [x for x in range (randint(5,25))]
     E = []
     for pair in asymetric_tuples(V):
         if random() > 0.5:
             E.append(pair)
-            counter = counter + 1
     return V, E
 
 
@@ -63,6 +60,7 @@ def degree(v, V, E):
     return len(adjacent(v, V, E))
 
 
+#TODO
 def BFS(V,E):
     """ Partitions V into a list of connected sets """
     pass
