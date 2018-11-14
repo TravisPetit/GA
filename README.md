@@ -20,7 +20,7 @@ Python 3
 
 **A:** Because sets are not iterable in python.
 
-**Q:** Why is the set of edges defined as a set?
+**Q:** Why is the set of edges defined as a list?
 
 **A:** Because sets are not hashable, therefore they cannot contain sets which is a problem because every edge is a set.
 
