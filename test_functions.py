@@ -47,5 +47,17 @@ class TestFunctions(unittest.TestCase):
         self.assertEqual(fun.degree(3, V, E), 4)
 
 
+    def test_conected_components(self):
+        X = fun.connected_components(V, E)
+        self.assertListEqual(X, [[1,2,3,9,10],[4],[5],[6],[7],[8]])
+        X = fun.connected_components([], [])
+        self.assertListEqual(X, [])
+
+
+    def test_induced(self):
+        X = fun.induced(V, E)
+        #self.assertListEqual
+
+
 if __name__ == '__main__':
     unittest.main()

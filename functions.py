@@ -64,18 +64,39 @@ def degree(v, V, E):
     return len(adjacent(v, V, E))
 
 
-def connected_components(V,E):
-    """ Returns a list of the connected components of V using BFS """
+def connected_components(V, E):
+    """ Returns a list of the connected_components components of V using DFS """
     visited = []
     components = []
-    while visited != V:
-        current = list( set(V) - set(visited) )[0]
-        subgraph = [current]
-        visited.append(current)
-        queue = list( set(adjacent(current, V, E)) - set(visited) )
-        while len(queue) > 0:
-            el = queue.pop()
-            visited.append(el)
-            subgraph.append(el)
-        components.append(subgraph)
+
+    def dfs(node):
+        for neighbour in adjacent(node, V, E):
+            if neighbour not in visited:
+                visited.append(neighbour)
+                subgraph.append(neighbour)
+                dfs(neighbour)
+
+    for vertex in V:
+        if vertex not in visited:
+            visited.append(vertex)
+            subgraph = [vertex]
+            dfs(vertex)
+            components.append(subgraph)
     return components
+
+
+#TODO
+def induced(S,E):
+    """ Returns G(S):= graph induced by S which is a subset of E """
+    temp = []
+    for vertex in S:
+        for edge in E:
+            if vertex in edge and vertex not in temp:
+                temp.append(edge)
+    return temp
+
+
+if "__name__" == "main":
+    V = [1,2,3,4,5]
+    E = [ {1,2}, {2,5}, {3, 4} ]
+    #print(connected_components(V, E))
