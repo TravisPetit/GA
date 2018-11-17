@@ -1,9 +1,6 @@
 import functions as fun
 from math import floor
 
-#V = [1,2]
-#E = [{1,2}]
-
 def maxset(V, E):
     """ Returns the cardinality of the maximum independent set in (V,E) """
 
@@ -29,3 +26,10 @@ def maxset(V, E):
     # -- STATEMENT 2.1 -- #
             if fun.for_all(V, lambda w: fun.degree(w, V, E) == 2):
                 return floor( len(V) / 2 )
+            else:
+                w1 = list(filter(lambda x: fun.degree(x, V, E) >= 3 and {v, x} in E, fun.adjacent(v, V, E)))[0]
+                w2 = list( set(fun.adjacent(v, V, E) - {w1}) )[0]
+
+    # -- STATEMENT 2.2 -- #
+            if {w1, w2} in E:
+                return 1 + maxset( list(set(V) - {v,w1,w2}) )
