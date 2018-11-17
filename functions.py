@@ -87,7 +87,7 @@ def connected_components(V, E):
 
 def induced(S, E):
     """ Returns G(S):= graph induced by S which is a subset of E """
-    return list(filter(lambda pair: list(pair)[0] in S and list(pair)[1] in S, E))
+    return list(filter(lambda pair: pair.issubset(set(S)) , E))
 
 
 def vertex_of_min_degree(V, E):
