@@ -19,3 +19,9 @@ def maxset(V, E):
     # -- STATEMENT 1 -- #
         if fun.degree(v, V, E) == 1:
             Av = fun.adjacent(v)
+            w = Av[0]
+            return 1 + maxset( list(set(V) - {v,w}) )
+
+    # -- STATEMENT 2 -- #
+        elif fun.degree(v, V, E) == 2:
+            pass
