@@ -24,4 +24,7 @@ def maxset(V, E):
 
     # -- STATEMENT 2 -- #
         elif fun.degree(v, V, E) == 2:
-            pass
+
+    # -- STATEMENT 2.1 -- #
+            if fun.for_all(V, lambda w: fun.degree(w, V, E) == 2):
+                return floor( len(V) / 2 )
