@@ -85,18 +85,20 @@ def connected_components(V, E):
     return components
 
 
-#TODO
-def induced(S,E):
+def induced(S, E):
     """ Returns G(S):= graph induced by S which is a subset of E """
-    temp = []
-    for vertex in S:
-        for edge in E:
-            if vertex in edge and vertex not in temp:
-                temp.append(edge)
-    return temp
+    return list(filter(lambda pair: list(pair)[0] in S and list(pair)[1] in S, E))
 
 
-if "__name__" == "main":
-    V = [1,2,3,4,5]
-    E = [ {1,2}, {2,5}, {3, 4} ]
-    #print(connected_components(V, E))
+def vertex_of_min_degree(V, E):
+    """ Returns a vertex of minumum degree """
+    min_vertex = V[0]
+    for vertex in V:
+        if degree(vertex, V, E) < degree(min_vertex, V, E):
+            min_vertex = vertex
+    return min_vertex
+
+
+V = [1,2,3,4,5]
+E = [ {1,2}, {2,5}, {3, 4} ]
+#print(induced(V,E))

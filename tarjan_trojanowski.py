@@ -14,7 +14,7 @@ def maxset(V, E):
            temp += maxset(connected_subgraph, fun.induced(connected_subgraph, E))
         return temp
     else:
-        v = fun.vertex_of_min_degree(V, E) # TODO: not implemented yet
+        v = fun.vertex_of_min_degree(V, E)
 
     # -- STATEMENT 1 -- #
         if fun.degree(v, V, E) == 1:

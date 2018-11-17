@@ -43,8 +43,10 @@ class TestFunctions(unittest.TestCase):
 
 
     def test_degree(self):
-        X = fun.adjacent(3, V, E)
-        self.assertEqual(fun.degree(3, V, E), 4)
+        X = fun.degree(3, V, E)
+        self.assertEqual(X, 4)
+        X = fun.degree(8, V, E)
+        self.assertEqual(X, 0)
 
 
     def test_conected_components(self):
@@ -56,7 +58,14 @@ class TestFunctions(unittest.TestCase):
 
     def test_induced(self):
         X = fun.induced(V, E)
-        #self.assertListEqual
+        self.assertListEqual(X, E)
+        X = fun.induced(S, E)
+        self.assertListEqual(X, [{1,3}, {1,9}, {1,2}, {3,9}, {3,2}, {9,2}])
+
+
+    def test_vertex_of_min_degree(self):
+        X = fun.vertex_of_min_degree(V, E)
+        self.assertTrue(X == 4 or X == 5 or X == 6 or X == 7 or X == 8)
 
 
 if __name__ == '__main__':
