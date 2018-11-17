@@ -99,6 +99,14 @@ def vertex_of_min_degree(V, E):
     return min_vertex
 
 
+def for_all(S, f):
+    """ returns true if f evaluates to True for all inputs of S """
+    for s in S:
+        if not f(s):
+            return False
+    return True
+
+
 V = [1,2,3,4,5]
 E = [ {1,2}, {2,5}, {3, 4} ]
 #print(induced(V,E))

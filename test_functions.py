@@ -68,5 +68,12 @@ class TestFunctions(unittest.TestCase):
         self.assertTrue(X == 4 or X == 5 or X == 6 or X == 7 or X == 8)
 
 
+    def test_for_all(self):
+        X = fun.for_all(V, lambda v: v <= 10)
+        self.assertTrue(X)
+        X = fun.for_all(V, lambda v: v > 2)
+        self.assertFalse(X)
+
+
 if __name__ == '__main__':
     unittest.main()
