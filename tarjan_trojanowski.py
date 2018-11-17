@@ -1,4 +1,5 @@
 import functions as fun
+from math import floor
 
 #V = [1,2]
 #E = [{1,2}]
