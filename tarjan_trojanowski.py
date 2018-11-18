@@ -4,6 +4,9 @@ from math import floor
 def maxset(V, E):
     """ Returns the cardinality of the maximum independent set in (V,E) """
 
+    if not V: # if V is empty
+        return 0
+
     # -- STATEMENT 0 -- #
     components = fun.connected_components(V, E)
     if len(components) > 1: # if V is not connected
@@ -46,3 +49,8 @@ def maxset(V, E):
         elif fun.degree(v, V, E) == 3:
             Av = fun.adjacent(v, V, E)
             w1, w2, w3 = Av[0], Av[1], Av[2]
+
+    # -- STATEMENT 3.1 -- #
+            if {w1,w2} in E and {w1,w3} in E and {w2,w3} in E:
+                temp = list( set(V) - {v,w1,w2,w3} )
+                return 1 + maxset(temp, fun.induced(temp, E))
