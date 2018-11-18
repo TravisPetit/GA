@@ -29,9 +29,20 @@ def maxset(V, E):
                 return floor( len(V) / 2 )
             else:
                 w1 = list(filter(lambda x: fun.degree(x, V, E) >= 3 and {v, x} in E, fun.adjacent(v, V, E)))[0]
-                w2 = list( set(fun.adjacent(v, V, E) - {w1}) )[0]
+                w2 = list( set(fun.adjacent(v, V, E)) - {w1} )[0]
 
     # -- STATEMENT 2.2 -- #
             if {w1, w2} in E:
                 temp = list(set(V) - {v,w1,w2})
                 return 1 + maxset(temp, fun.induced(temp, E))
+
+    # -- STATEMENT 2.3 -- #
+            elif {w1, w2} not in E:
+                temp1 = list(set(V) - {v,w1,w2})
+                temp2 = list( set(V) - set(fun.adjacent(w1, V, E)) - set(fun.adjacent(w2, V, E)) )
+                return max(1 + maxset(temp1, fun.induced(temp1, E)), 2 + maxset(temp2, fun.induced(temp2, E)))
+
+    # -- STATMENT 3 -- #
+        elif fun.degree(v, V, E) == 3:
+            Av = fun.adjacent(v, V, E)
+            w1, w2, w3 = Av[0], Av[1], Av[2]
