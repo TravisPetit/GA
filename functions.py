@@ -12,7 +12,7 @@ def powerset(S):
 
 
 def is_clique(S, E):
-    """ Returns true if S is a clique in (V,E) """
+    """ Returns True if S is a clique in (V,E) """
     SxS = asymetric_tuples(S)
     for pair in SxS:
         if pair not in E:
@@ -21,17 +21,13 @@ def is_clique(S, E):
 
 
 def asymetric_tuples(S):
-    """ Returns all possible subsets of S with cardinality 2 """
+    """ Returns all the possible subsets of S with cardinality 2 """
     temp = []
     for i in S:
         for j in S:
             if {i,j} not in temp and i != j:
                 temp.append({i,j})
     return temp
-
-# pretty but too complicated
-#def asymetric_tuples(S):
-#    return list(filter(lambda x : len(x) == 2, [{x,y} for x,y in zip(*[iter(S)]*2)]))
 
 
 def G_complement(V, E):
@@ -80,7 +76,7 @@ def degree(v, V, E):
 
 
 def connected_components(V, E):
-    """ Returns a list of the connected_components components of V using DFS """
+    """ Returns a list of the connected components components of V using DFS """
     visited = set()
     components = []
 
@@ -101,7 +97,7 @@ def connected_components(V, E):
 
 
 def induced(S, E):
-    """ Returns G(S):= graph induced by S which is a subset of E """
+    """ Returns E(S):= graph induced by S which is a subset of E """
     return list(filter(lambda pair: pair.issubset(set(S)) , E))
 
 
@@ -115,7 +111,7 @@ def vertex_of_min_degree(V, E):
 
 
 def for_all(S, f):
-    """ returns true if f evaluates to True for all inputs of S """
+    """ returns True if f evaluates to True for all inputs of S """
     for s in S:
         if not f(s):
             return False
