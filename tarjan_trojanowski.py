@@ -61,13 +61,23 @@ def maxset(V, E):
             return 1 + maxset(temp, fun.induced(temp, E))
 
     # -- STATEMENT 3.2 -- #
-        if ({w1,w2} in E and {w1,w3} in E) or ({w1,w3} in E and {w2,w3} in E) or ({w1,w2} in E and {w2,w3} in E):
+        elif ({w1,w2} in E and {w1,w3} in E) or ({w1,w3} in E and {w2,w3} in E) or ({w1,w2} in E and {w2,w3} in E):
             temp1 = list( set(V) - {v,w1,w2,w3} )
             temp2 = list( set(V) - set(fun.adjacent(w2, V, E)) - set(fun.adjacent(w3, V, E)) )
             return max(1 + maxset(temp1, fun.induced(temp1, E)), 2 + maxset(temp2, fun.induced(temp2, E)))
 
     # -- STATEMENT 3.3 -- #
-        if {w1,w2} in E or {w1,w3} in E or {w2,w3} in E:
+        elif {w1,w2} in E or {w1,w3} in E or {w2,w3} in E:
             A1c = list( set(V) - {w1,w2,w3} - set(fun.adjacent(w1, V, E)) )
             A2c = list( set(V) - {w1,w2,w3} - set(fun.adjacent(w2, V, E)) )
             A3c = list( set(V) - {w1,w2,w3} - set(fun.adjacent(w3, V, E)) )
+
+    # -- STATEMENT 3.3.1 -- #
+            #TODO
+
+    # -- STATEMENT 3.3.2 -- #
+            if len(list( (set(A1c).intersection(set(A3c)) ))) <= len(V) - 7 and len(list( set(A2c).intersection(set(A3c)) )) <= len(V) - 7:
+                   temp1 = list( set(V) - {v,w1,w2,w3} )
+                   temp2 = list( set(A1c).intersection(set(A3c) ))
+                   temp3 = list( set(A2c).intersection(set(A3c) ))
+                   return max(1 + maxset(temp1, fun.induced(temp1, E)), 2 + maxset(temp2, fun.induced(temp2, E)), 2 + maxset(temp3, fun.induced(temp3, E)))
