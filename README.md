@@ -16,10 +16,6 @@ Python 3
 
 **A:** [Here.](http://i.stanford.edu/pub/cstr/reports/cs/tr/76/550/CS-TR-76-550.pdf)
 
-**Q:** Why is the set of vertices defined as a list?
-
-**A:** Because sets are not iterable in python.
-
 **Q:** Why is the set of edges defined as a list?
 
 **A:** Because sets are not hashable, therefore they cannot contain sets which is a problem because every edge is a set.
