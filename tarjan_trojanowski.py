@@ -14,9 +14,10 @@ def maxset(V, E):
         for connected_subgraph in components:
            temp += maxset(connected_subgraph, fun.induced(connected_subgraph, E))
         return temp
-    else:
+
         v = fun.vertex_of_min_degree(V, E)
 
+    # -- CASE: DEG = 0 -- #
         if fun.degree(v, V, E) == 0:
             temp = list( set(V) - {v} )
             return 1 + maxset(temp, fun.induced(temp, E))
@@ -58,3 +59,15 @@ def maxset(V, E):
             if {w1,w2} in E and {w1,w3} in E and {w2,w3} in E:
                 temp = list( set(V) - {v,w1,w2,w3} )
                 return 1 + maxset(temp, fun.induced(temp, E))
+
+    # -- STATEMENT 3.2 -- #
+            if ({w1,w2} in E and {w1,w3} in E) or ({w1,w3} in E and {w2,w3} in E) or ({w1,w2} in E and {w2,w3} in E):
+                temp1 = list( set(V) - {v,w1,w2,w3} )
+                temp2 = list( set(V) - set(fun.adjacent(w2, V, E)) - set(fun.adjacent(w3, V, E)) )
+                return max(1 + maxset(temp1, fun.induced(temp1, E)), 2 + maxset(temp2, fun.induced(temp2, E)))
+
+    # -- STATEMENT 3.3 -- #
+            if {w1,w2} in E or {w1,w3} in E or {w2,w3} in E:
+                A1c = list( set(v) - {w1,w2,w3} - set(fun.adjacent(w1, V, E)) )
+                A2c = list( set(v) - {w1,w2,w3} - set(fun.adjacent(w2, V, E)) )
+                A3c = list( set(v) - {w1,w2,w3} - set(fun.adjacent(w3, V, E)) )
