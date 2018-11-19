@@ -71,7 +71,7 @@ class TestTarjanTrojanowski(unittest.TestCase):
 
     def test_degree7_and_higher(self):
         for i in range(3):
-            V,E = generate_graph_of_degree(7,25)
+            V,E = generate_graph_of_degree(randint(7,25))
             Ec = G_complement(V,E)
             actual = len(naive(V, Ec))
             expected = maxset(V,E)
