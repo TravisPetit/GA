@@ -1,4 +1,4 @@
-from random import random, randint
+from random import random, randint, shuffle
 import itertools
 
 def powerset(S):
@@ -51,6 +51,8 @@ def generate_random_graph():
     for pair in asymetric_tuples(V):
         if random() > 0.5:
             E.append(pair)
+    shuffle(V)
+    shuffle(E)
     return V, E
 
 
@@ -64,6 +66,8 @@ def generate_graph_of_degree(n):
         v = temp[1]
         if degree(u, V, E) < n and degree(v, V, E) < n and random() < 0.8:
             E.append(pair)
+    shuffle(V)
+    shuffle(E)
     return V, E
 
 
