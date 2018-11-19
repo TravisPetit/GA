@@ -75,5 +75,12 @@ class TestFunctions(unittest.TestCase):
         self.assertFalse(X)
 
 
+    def test_graph_of_degree_n(self):
+        for i in range(50):
+            V,E = fun.generate_graph_of_degree(i)
+            for v in V:
+                self.assertLessEqual(fun.degree(v, V, E), i)
+
+
 if __name__ == '__main__':
     unittest.main()

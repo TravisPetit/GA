@@ -54,9 +54,23 @@ def generate_random_graph():
     return V, E
 
 
+def generate_graph_of_degree(n):
+    """ Generates a graph where all the vertices have at most degree n """
+    V = [x for x in range (randint(5,25))]
+    E = []
+    for pair in asymetric_tuples(V):
+        temp = list(pair)
+        u = temp[0]
+        v = temp[1]
+        if degree(u, V, E) < n and degree(v, V, E) < n and random() < 0.8:
+            E.append(pair)
+    return V, E
+
+
 def adjacent(v, V, E):
     """ Returns a list with all the vertices adjacent to v """
     return list(filter(lambda w : {v,w} in E, V))
+
 
 
 def degree(v, V, E):
@@ -105,8 +119,3 @@ def for_all(S, f):
         if not f(s):
             return False
     return True
-
-
-V = [1,2,3,4,5]
-E = [ {1,2}, {2,5}, {3, 4} ]
-#print(induced(V,E))
