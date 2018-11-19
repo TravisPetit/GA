@@ -19,14 +19,14 @@ def maxset(V, E):
 
     # -- CASE: DEG = 0 -- #
     if fun.degree(v, V, E) == 0:
-        temp = list( set(V) - {v} )
+        temp = V - {v}
         return 1 + maxset(temp, fun.induced(temp, E))
 
     # -- STATEMENT 1 -- #
     elif fun.degree(v, V, E) == 1:
         Av = fun.adjacent(v, V, E)
-        w = Av[0]
-        temp = list(set(V) - {v,w})
+        w = list(Av)[0]
+        temp = V - {v,w}
         return 1 + maxset(temp, fun.induced(temp, E))
 
     # -- STATEMENT 2 -- #
@@ -37,47 +37,50 @@ def maxset(V, E):
             return floor( len(V) / 2 )
         else:
             w1 = list(filter(lambda x: fun.degree(x, V, E) >= 3 and {v, x} in E, fun.adjacent(v, V, E)))[0]
-            w2 = list( set(fun.adjacent(v, V, E)) - {w1} )[0]
+            w2 = list( fun.adjacent(v, V, E) - {w1} )[0]
 
     # -- STATEMENT 2.2 -- #
         if {w1, w2} in E:
-            temp = list(set(V) - {v,w1,w2})
+            temp = V - {v,w1,w2}
             return 1 + maxset(temp, fun.induced(temp, E))
 
     # -- STATEMENT 2.3 -- #
         elif {w1, w2} not in E:
-            temp1 = list(set(V) - {v,w1,w2})
-            temp2 = list( set(V) - set(fun.adjacent(w1, V, E)) - set(fun.adjacent(w2, V, E)) )
+            temp1 = V - {v,w1,w2}
+            temp2 = V - fun.adjacent(w1, V, E) - fun.adjacent(w2, V, E)
             return max(1 + maxset(temp1, fun.induced(temp1, E)), 2 + maxset(temp2, fun.induced(temp2, E)))
 
     # -- STATMENT 3 -- #
     elif fun.degree(v, V, E) == 3:
-        Av = fun.adjacent(v, V, E)
+        Av = list(fun.adjacent(v, V, E))
         w1, w2, w3 = Av[0], Av[1], Av[2]
 
     # -- STATEMENT 3.1 -- #
         if {w1,w2} in E and {w1,w3} in E and {w2,w3} in E:
-            temp = list( set(V) - {v,w1,w2,w3} )
+            temp = V - {v,w1,w2,w3}
             return 1 + maxset(temp, fun.induced(temp, E))
 
     # -- STATEMENT 3.2 -- #
         elif ({w1,w2} in E and {w1,w3} in E) or ({w1,w3} in E and {w2,w3} in E) or ({w1,w2} in E and {w2,w3} in E):
-            temp1 = list( set(V) - {v,w1,w2,w3} )
-            temp2 = list( set(V) - set(fun.adjacent(w2, V, E)) - set(fun.adjacent(w3, V, E)) )
+            temp1 = V - {v,w1,w2,w3}
+            temp2 = V - fun.adjacent(w2, V, E) - fun.adjacent(w3, V, E)
             return max(1 + maxset(temp1, fun.induced(temp1, E)), 2 + maxset(temp2, fun.induced(temp2, E)))
 
     # -- STATEMENT 3.3 -- #
         elif {w1,w2} in E or {w1,w3} in E or {w2,w3} in E:
-            A1c = list( set(V) - {w1,w2,w3} - set(fun.adjacent(w1, V, E)) )
-            A2c = list( set(V) - {w1,w2,w3} - set(fun.adjacent(w2, V, E)) )
-            A3c = list( set(V) - {w1,w2,w3} - set(fun.adjacent(w3, V, E)) )
+            A1c = V - {w1,w2,w3} - fun.adjacent(w1, V, E)
+            A2c = V - {w1,w2,w3} - fun.adjacent(w2, V, E)
+            A3c = V - {w1,w2,w3} - fun.adjacent(w3, V, E)
 
     # -- STATEMENT 3.3.1 -- #
             #TODO
 
     # -- STATEMENT 3.3.2 -- #
-            if len(list( (set(A1c).intersection(set(A3c)) ))) <= len(V) - 7 and len(list( set(A2c).intersection(set(A3c)) )) <= len(V) - 7:
-                   temp1 = list( set(V) - {v,w1,w2,w3} )
-                   temp2 = list( set(A1c).intersection(set(A3c) ))
-                   temp3 = list( set(A2c).intersection(set(A3c) ))
-                   return max(1 + maxset(temp1, fun.induced(temp1, E)), 2 + maxset(temp2, fun.induced(temp2, E)), 2 + maxset(temp3, fun.induced(temp3, E)))
+            if len(A1c & (A3c)) <= len(V) - 7 and len(A2c & (A3c)) <= len(V) - 7:
+                   temp1 = V - {v,w1,w2,w3}
+                   E1 = fun.induced(temp1, E)
+                   temp2 = A1c & (A3c)
+                   E2 = fun.induced(temp2, E)
+                   temp3 = A2c & (A3c)
+                   E3 = fun.induced(temp3, E)
+                   return max(1 + maxset(temp1, E1), 2 + maxset(temp2, E2), 2 + maxset(temp3, E3))

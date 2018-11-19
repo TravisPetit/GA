@@ -7,14 +7,12 @@ class TestFunctions(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         global V, S, E
-        V = [1,2,3,4,5,6,7,8,9,10]
-        S = [1,3,9,2]
+        V = {1,2,3,4,5,6,7,8,9,10}
+        S = {1,3,9,2}
         E = [{1,3}, {1,9}, {1,2}, {3,9}, {3,2}, {9,2}, {2, 10}, {3, 10}]
 
 
     def setUp(self):
-        shuffle(V)
-        shuffle(S)
         shuffle(E)
 
 
@@ -22,13 +20,13 @@ class TestFunctions(unittest.TestCase):
         X = fun.powerset(V)
         self.assertIn({1,2}, X)
         self.assertIn(set(), X)
-        self.assertNotIn([{1,2,3}], X)
+        self.assertNotIn({1,2,3,11}, X)
 
 
     def test_is_clique(self):
         self.assertTrue(fun.is_clique(S, E))
-        self.assertFalse(fun.is_clique([1,4,5], E))
-        self.assertTrue(fun.is_clique([], E))
+        self.assertFalse(fun.is_clique({1,4,5}, E))
+        self.assertTrue(fun.is_clique(set(), E))
 
 
     def test_asymetric_tuples(self):
@@ -46,8 +44,7 @@ class TestFunctions(unittest.TestCase):
 
     def test_adjacent(self):
         X = fun.adjacent(3, V, E)
-        self.assertEqual(len(X), len([1,2,9,10]))
-        self.assertSetEqual(set(X), set([1,2,9,10]))
+        self.assertSetEqual(X, {1,2,9,10})
 
 
     def test_degree(self):
@@ -59,17 +56,22 @@ class TestFunctions(unittest.TestCase):
 
     def test_conected_components(self):
         X = fun.connected_components(V, E)
-        #self.assertSetEqual(set(X), set([[1,2,3,9,10],[4],[5],[6],[7],[8]]))
-        self.assertEqual(len(X), len([[1,2,3,9,10],[4],[5],[6],[7],[8]]))
-        X = fun.connected_components([], [])
+        self.assertEqual(len(X), len([{1,2,3,9,10},{4},{5},{6},{7},{8}]))
+        for component in [{1,2,3,9,10},{4},{5},{6},{7},{8}]:
+           self.assertIn(component, X)
+        X = fun.connected_components(set(), [])
         self.assertListEqual(X, [])
 
 
     def test_induced(self):
         X = fun.induced(V, E)
         self.assertEqual(len(X), len(E))
+        for edge in E:
+            self.assertIn(edge, X)
         X = fun.induced(S, E)
         self.assertEqual(len(X), len([{1,3}, {1,9}, {1,2}, {3,9}, {3,2}, {9,2}]))
+        for edge in [{1,3}, {1,9}, {1,2}, {3,9}, {3,2}, {9,2}]:
+            self.assertIn(edge, X)
 
 
     def test_vertex_of_min_degree(self):
@@ -85,7 +87,7 @@ class TestFunctions(unittest.TestCase):
 
 
     def test_graph_of_degree_n(self):
-        for i in range(50):
+        for i in range(20):
             V,E = fun.generate_graph_of_degree(i)
             for v in V:
                 self.assertLessEqual(fun.degree(v, V, E), i)

@@ -46,19 +46,18 @@ def G_complement(V, E):
 
 def generate_random_graph():
     """ Used for testing purposes """
-    V = [x for x in range (randint(5,15))]
+    V = {x for x in range (randint(5,15))}
     E = []
     for pair in asymetric_tuples(V):
         if random() > 0.5:
             E.append(pair)
-    shuffle(V)
     shuffle(E)
     return V, E
 
 
 def generate_graph_of_degree(n):
     """ Generates a graph where all the vertices have at most degree n """
-    V = [x for x in range (randint(5,15))]
+    V = {x for x in range (randint(5,15))}
     E = []
     for pair in asymetric_tuples(V):
         temp = list(pair)
@@ -66,15 +65,13 @@ def generate_graph_of_degree(n):
         v = temp[1]
         if degree(u, V, E) < n and degree(v, V, E) < n and random() < 0.8:
             E.append(pair)
-    shuffle(V)
     shuffle(E)
     return V, E
 
 
 def adjacent(v, V, E):
-    """ Returns a list with all the vertices adjacent to v """
-    return list(filter(lambda w : {v,w} in E, V))
-
+    """ Returns a set with all the vertices adjacent to v """
+    return set(filter(lambda w : {v,w} in E, V))
 
 
 def degree(v, V, E):
@@ -84,20 +81,20 @@ def degree(v, V, E):
 
 def connected_components(V, E):
     """ Returns a list of the connected_components components of V using DFS """
-    visited = []
+    visited = set()
     components = []
 
     def dfs(node):
         for neighbour in adjacent(node, V, E):
             if neighbour not in visited:
-                visited.append(neighbour)
-                subgraph.append(neighbour)
+                visited.add(neighbour)
+                subgraph.add(neighbour)
                 dfs(neighbour)
 
     for vertex in V:
         if vertex not in visited:
-            visited.append(vertex)
-            subgraph = [vertex]
+            visited.add(vertex)
+            subgraph = {vertex}
             dfs(vertex)
             components.append(subgraph)
     return components
@@ -110,7 +107,7 @@ def induced(S, E):
 
 def vertex_of_min_degree(V, E):
     """ Returns a vertex of minumum degree """
-    min_vertex = V[0]
+    min_vertex = list(V)[0]
     for vertex in V:
         if degree(vertex, V, E) < degree(min_vertex, V, E):
             min_vertex = vertex
