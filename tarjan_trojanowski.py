@@ -2,7 +2,7 @@ import functions as fun
 from math import floor
 
 def maxset(V, E):
-    """ Returns the cardinality of the maximum independent set in (V,E) """
+    """ Retruns the cardinality of the maximum independent set in (V,E) """
 
     if not V: # if V is empty
         return 0
