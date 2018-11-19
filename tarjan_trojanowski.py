@@ -68,6 +68,6 @@ def maxset(V, E):
 
     # -- STATEMENT 3.3 -- #
         if {w1,w2} in E or {w1,w3} in E or {w2,w3} in E:
-            A1c = list( set(v) - {w1,w2,w3} - set(fun.adjacent(w1, V, E)) )
-            A2c = list( set(v) - {w1,w2,w3} - set(fun.adjacent(w2, V, E)) )
-            A3c = list( set(v) - {w1,w2,w3} - set(fun.adjacent(w3, V, E)) )
+            A1c = list( set(V) - {w1,w2,w3} - set(fun.adjacent(w1, V, E)) )
+            A2c = list( set(V) - {w1,w2,w3} - set(fun.adjacent(w2, V, E)) )
+            A3c = list( set(V) - {w1,w2,w3} - set(fun.adjacent(w3, V, E)) )
