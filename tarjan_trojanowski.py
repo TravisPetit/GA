@@ -78,8 +78,8 @@ def maxset(V, E):
             if len(A1c & A3c) <= len(V) - 7 and len(A2c & A3c) <= len(V) - 7:
                    temp1 = V - {v,w1,w2,w3}
                    E1 = fun.induced(temp1, E)
-                   temp2 = A1c & (A3c)
+                   temp2 = A1c & A3c
                    E2 = fun.induced(temp2, E)
-                   temp3 = A2c & (A3c)
+                   temp3 = A2c & A3c
                    E3 = fun.induced(temp3, E)
                    return max(1 + maxset(temp1, E1), 2 + maxset(temp2, E2), 2 + maxset(temp3, E3))
