@@ -14,7 +14,6 @@ def maxset(V, E):
         for connected_subgraph in components:
            temp += maxset(connected_subgraph, fun.induced(connected_subgraph, E))
         return temp
-
     v = fun.vertex_of_min_degree(V, E)
 
     # -- CASE: DEG = 0 -- #
@@ -76,7 +75,7 @@ def maxset(V, E):
             #TODO
 
     # -- STATEMENT 3.3.2 -- #
-            if len(A1c & (A3c)) <= len(V) - 7 and len(A2c & (A3c)) <= len(V) - 7:
+            if len(A1c & A3c) <= len(V) - 7 and len(A2c & A3c) <= len(V) - 7:
                    temp1 = V - {v,w1,w2,w3}
                    E1 = fun.induced(temp1, E)
                    temp2 = A1c & (A3c)
