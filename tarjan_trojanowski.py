@@ -83,3 +83,17 @@ def maxset(V, E):
                    temp3 = A2c & A3c
                    E3 = fun.induced(temp3, E)
                    return max(1 + maxset(temp1, E1), 2 + maxset(temp2, E2), 2 + maxset(temp3, E3))
+
+    # -- STATEMENT 3.4 -- #
+        elif {w1,w2} not in E and {w2,w3} not in E and {w1,w3} not in E:
+            A1c = V - fun.adjacent(w1, V, E)
+            A2c = V - fun.adjacent(w2, V, E)
+            A3c = V - fun.adjacent(w3, V, E)
+
+    # -- STATEMENT 3.4.1 -- #
+            if len(A1c & A2c & A3c) >= len(V) - 7:
+                temp1 = V - {v,w1,w2,w3}
+                E1 = fun.induced(temp1, E)
+                temp2 = V - (A1c & A2c & A3c)
+                E2 = fun.induced(temp2, E)
+                return max(1 + maxset(temp1, E1), 3 + maxset(temp2, E2))
