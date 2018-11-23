@@ -1,4 +1,5 @@
 import functions as fun
+import cases
 from math import floor
 
 def maxset(V, E):
@@ -97,3 +98,14 @@ def maxset(V, E):
                 temp2 = V - (A1c & A2c & A3c)
                 E2 = fun.induced(temp2, E)
                 return max(1 + maxset(temp1, E1), 3 + maxset(temp2, E2))
+
+    # -- STATEMENT 3.4.2 -- #
+            elif len(A1c & A2c & A3c) == len(V) - 8 or len(A1c & A2c & A3c) == len(V) - 9:
+
+    # -- STATEMENT 3.4.2.1 -- #
+                if cases.case_3_4_2_1(A1c, A2c, A3c):
+                    temp1 = V - {v,w1,w2,w3}
+                    E1 = fun.induced(temp1, E)
+                    temp2 = A1c & A2c & A3c
+                    E2 = fun.induced(temp2, E)
+                    return max(1 + maxset(temp1, E1), 3 + maxset(temp2, E2))
