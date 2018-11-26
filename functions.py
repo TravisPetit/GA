@@ -42,7 +42,7 @@ def G_complement(V, E):
 
 def generate_random_graph():
     """ Generates a random graph using the Erdős–Rényi Model """
-    V = {x for x in range (randint(1,20))}
+    V = {x for x in range (randint(1,15))}
     E = []
     for pair in asymetric_tuples(V):
         if random() > 0.5:
@@ -53,7 +53,7 @@ def generate_random_graph():
 
 def generate_graph_of_degree(n):
     """ Generates a random graph where all the vertices have at most degree n """
-    V = {x for x in range (randint(1,20))}
+    V = {x for x in range (randint(1,15))}
     E = []
     for pair in asymetric_tuples(V):
         temp = list(pair)
