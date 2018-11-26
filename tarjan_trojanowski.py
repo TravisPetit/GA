@@ -111,3 +111,20 @@ def maxset(V, E):
                     temp2 = A1c & A2c & A3c
                     E2 = fun.induced(temp2, E)
                     return max(1 + maxset(temp1, E1), 3 + maxset(temp2, E2))
+
+    # -- STATEMENT 3.4.2.2 -- #
+                else:
+                    Aic, Ajc = cases.case_3_4_2_2(A1c, A2c, A3c)
+                    temp1 = V - {v,w1,w2,w3}
+                    E1 = fun.induced(temp1, E)
+                    temp2 = Aic & Ajc
+                    E2 = fun.induced(temp2, E)
+                    temp3 = A1c & A2c & A3c
+                    E3 = fun.induced(temp3, E)
+                    return max(1 + maxset(temp1, E1), 2 + maxset(temp2, E2), 3 + maxset(temp3, E3))
+
+    # -- STATEMENT 3.4.3 -- #
+            elif len(A1c & A2c & A3c) <= len(V) - 10:
+
+    # -- STATEMENT 3.4.3.3 -- #
+               pass
