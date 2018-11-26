@@ -40,9 +40,9 @@ def G_complement(V, E):
     return temp
 
 
-def generate_random_graph():
+def generate_random_graph(bound=15):
     """ Generates a random graph using the Erdős–Rényi Model """
-    V = {x for x in range (randint(1,15))}
+    V = {x for x in range (randint(1, bound))}
     E = []
     for pair in asymetric_tuples(V):
         if random() > 0.5:
@@ -116,3 +116,9 @@ def for_all(S, f):
         if not f(s):
             return False
     return True
+
+def density(V,E):
+    """ Returns the graph density which is a number in the intervall [0,1] """
+    numerator = 2 * len(E)
+    denominator = len(V) * (len(V) - 1)
+    return numerator / denominator
