@@ -1,7 +1,8 @@
+from threading import *
 from time import time
 from naive import naive
 from tarjan_trojanowski import maxset
-from functions import generate_random_graph, density
+from functions import generate_random_graph, density, G_complement
 
 class Graph:
 
@@ -19,7 +20,7 @@ class Graph:
         end = time()
         self.__naive_time = round(end - start, 4)
         start = time()
-        maxset(self.__V, self.__E)
+        maxset(self.__V, G_complement(self.__V, self.__E))
         end = time()
         self.__tar_troj_time = round(end - start, 4)
 
@@ -61,12 +62,18 @@ class Graph:
 
 
 def setup():
+    #thread_cap = 3
+    #thread_lock = BoundedSemaphore(value=thread_cap)
     global graphs
     graphs = []
     for i in range(5):
-        V, E = generate_random_graph(30)
+        V, E = generate_random_graph(10, 20)
         graphs.append(Graph(V, E))
-        graphs[i].evaluate()
+    for graph in graphs:
+        #thread_lock.acquire()
+        #t = Thread(target=graph.evaluate)
+        #child = t.start()
+        graph.evaluate()
     f = open("benchmark.txt", "w+")
     for graph in graphs:
         f.write(str(graph))
