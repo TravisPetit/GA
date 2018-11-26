@@ -3,13 +3,14 @@ This consists of an implementation of the famous Tarjan and Torjanowski's algori
 It also consists of a function that compares the runtime of this algorithm with the naive approach at finding maximum cliques.
 
 ## Requirements
-Python 3
+* Python 3
+* Unix-based OS
 
 ## Dependencies
 * Itertools (I believe this is part of the standart library in python 3+)
 
 ## Usage
-Run the shell script `setup.sh` to be able to run the tests.
+First run `sh setup.sh` and then `python3 benchmark.py`.
 
 ## FAQ
 **Q:** Where can I find the pseudo code for this algorithm?
