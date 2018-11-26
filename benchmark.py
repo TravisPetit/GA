@@ -1,4 +1,4 @@
-from threading import *
+#from threading import *
 from time import time
 from naive import naive
 from tarjan_trojanowski import maxset
