@@ -1,18 +1,18 @@
 from random import random, randint, shuffle
-import itertools
+from itertools import combinations
 
 def powerset(S):
     """ Returns a list with all the possible subsets of S """
     powerset = []
     for n in range(len(S) + 1):
-        for subset in itertools.combinations(S, n):
+        for subset in combinations(S, n):
             subset = set(subset)
             powerset.append(subset)
     return powerset
 
 
 def is_clique(S, E):
-    """ Returns True if S is a clique in (V,E) """
+    """ Returns True if S is a clique E """
     SxS = asymetric_tuples(S)
     for pair in SxS:
         if pair not in E:
@@ -41,8 +41,8 @@ def G_complement(V, E):
 
 
 def generate_random_graph():
-    """ Used for testing purposes """
-    V = {x for x in range (randint(5,15))}
+    """ Generates a random graph using the Erdős–Rényi Model """
+    V = {x for x in range (randint(1,20))}
     E = []
     for pair in asymetric_tuples(V):
         if random() > 0.5:
@@ -52,8 +52,8 @@ def generate_random_graph():
 
 
 def generate_graph_of_degree(n):
-    """ Generates a graph where all the vertices have at most degree n """
-    V = {x for x in range (randint(5,15))}
+    """ Generates a random graph where all the vertices have at most degree n """
+    V = {x for x in range (randint(1,20))}
     E = []
     for pair in asymetric_tuples(V):
         temp = list(pair)

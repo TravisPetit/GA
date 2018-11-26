@@ -63,8 +63,10 @@ def maxset(V, E):
     # -- STATEMENT 3.2 -- #
         elif ({w1,w2} in E and {w1,w3} in E) or ({w1,w3} in E and {w2,w3} in E) or ({w1,w2} in E and {w2,w3} in E):
             temp1 = V - {v,w1,w2,w3}
+            E1 = fun.induced(temp1, E)
             temp2 = V - fun.adjacent(w2, V, E) - fun.adjacent(w3, V, E)
-            return max(1 + maxset(temp1, fun.induced(temp1, E)), 2 + maxset(temp2, fun.induced(temp2, E)))
+            E2 = fun.induced(temp2, E)
+            return max(1 + maxset(temp1, E1), 2 + maxset(temp2, E2))
 
     # -- STATEMENT 3.3 -- #
         elif {w1,w2} in E or {w1,w3} in E or {w2,w3} in E:
