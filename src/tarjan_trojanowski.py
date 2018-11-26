@@ -128,3 +128,26 @@ def maxset(V, E):
 
     # -- STATEMENT 3.4.3.3 -- #
                pass
+
+    # -- STATEMENT 5 -- #
+    elif fun.for_all(V, lambda w : fun.degree(w, V, E) == 5):
+
+    # -- STATEMENT 5.1 -- #
+        if len(V) == 6:
+            return 1
+
+    # -- STATEMENT 5.2 -- #
+        elif len(V) > 6:
+            temp1 = V - {v} - fun.adjacent(v, V, E)
+            E1 = fun.induced(temp1, E)
+            temp2 = V - {v}
+            E2 = fun.induced(temp2, E)
+            return max(1 + maxset(temp1, E1), maxset(temp2, E2))
+
+    # -- STATEMENT 6 -- #
+    elif fun.degree(v, V, E) >= 6:
+        temp1 = V - {v} - fun.adjacent(v, V, E)
+        E1 = fun.induced(temp1, E)
+        temp2 = V - {v}
+        E2 = fun.induced(temp2, E)
+        return max(1 + maxset(temp1, E1), maxset(temp2, E2))
