@@ -5,7 +5,8 @@ from math import floor
 def maxset(V, E):
     """ Retruns the cardinality of the maximum independent set in (V,E) """
 
-    if not V: # if V is empty
+    # -- CASE: V == {}
+    if not V:
         return 0
 
     # -- STATEMENT 0 -- #
@@ -151,3 +152,6 @@ def maxset(V, E):
         temp2 = V - {v}
         E2 = fun.induced(temp2, E)
         return max(1 + maxset(temp1, E1), maxset(temp2, E2))
+
+    # just so that it compiles for the time being ...
+    return 0
