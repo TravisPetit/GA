@@ -10,7 +10,7 @@ It also consists of a function that compares the runtime of this algorithm with 
 * Itertools (I believe this is part of the standart library in python 3+)
 
 ## Usage
-First run `sh setup.sh` and then `python3 benchmark.py`.
+If it is your first time using this program, run `sh setup.sh` and restart your terminal. To create a benchmark .txt file run `python3 benchmark.py`.
 
 ## FAQ
 **Q:** Where can I find the pseudo code for this algorithm?
