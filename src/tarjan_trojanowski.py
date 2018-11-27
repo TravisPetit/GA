@@ -6,13 +6,13 @@ from math import floor
 def maxset(V, E):
     """ Retruns the cardinality of the maximum independent set in (V,E) """
 
-    # -- CASE: V={} --#
+    # -- CASE: V={} -- #
     if not V:
         return 0
 
     # -- STATEMENT 0 -- #
     components = fun.connected_components(V, E)
-    if len(components) > 1: # if V is not connected
+    if len(components) > 1:
         temp = 0
         for connected_subgraph in components:
            temp += maxset(connected_subgraph, fun.induced(connected_subgraph, E))

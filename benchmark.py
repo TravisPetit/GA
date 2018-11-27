@@ -78,10 +78,10 @@ def setup():
         graph.evaluate()
     f = open("benchmark.txt", "w+")
     f.write("INTERATIONS: " + str(ITERATIONS) + "\n")
-    f.write("VERTICES UPPER BOUND: " + str(LOWER) + "\n")
-    f.write("VERTICES LOWER BOUND: " + str(UPPER) + "\n")
+    f.write("VERTEX LOWER BOUND: " + str(LOWER) + "\n")
+    f.write("VERTEX UPPER BOUND: " + str(UPPER) + "\n")
     f.write("GRAPH AVERAGE DENSITY: " + str(DENSITY) + "\n")
-    f.write("----------\n")
+    f.write("##########\n")
     for graph in graphs:
         f.write(str(graph))
     f.close()
