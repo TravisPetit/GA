@@ -19,8 +19,10 @@ class Graph:
         naive(self.__V, self.__E)
         end = time()
         self.__naive_time = round(end - start, 4)
+
         start = time()
-        maxset(self.__V, G_complement(self.__V, self.__E))
+        Ec = G_complement(self.__V, self.__E)
+        maxset(self.__V, Ec)
         end = time()
         self.__tar_troj_time = round(end - start, 4)
 
@@ -64,10 +66,9 @@ class Graph:
 def setup():
     #thread_cap = 3
     #thread_lock = BoundedSemaphore(value=thread_cap)
-    global graphs
     graphs = []
-    for i in range(5):
-        V, E = generate_random_graph(10, 20)
+    for i in range(ITERATIONS):
+        V, E = generate_random_graph(DENSITY, LOWER, UPPER)
         graphs.append(Graph(V, E))
     for graph in graphs:
         #thread_lock.acquire()
@@ -81,4 +82,8 @@ def setup():
 
 
 if __name__ == "__main__":
+    ITERATIONS = 10
+    LOWER      = 10
+    UPPER      = 15
+    DENSITY    = 0.3
     setup()

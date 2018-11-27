@@ -40,12 +40,12 @@ def G_complement(V, E):
     return temp
 
 
-def generate_random_graph(lower = 1, upper=15):
+def generate_random_graph(p=0.5, lower = 1, upper=15):
     """ Generates a random graph using the Erdős–Rényi Model """
     V = {x for x in range (randint(lower, upper))}
     E = []
     for pair in asymetric_tuples(V):
-        if random() > 0.5:
+        if p > random():
             E.append(pair)
     shuffle(E)
     return V, E
