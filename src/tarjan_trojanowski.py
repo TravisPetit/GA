@@ -1,5 +1,6 @@
 import functions as fun
 import cases
+from naive import naive
 from math import floor
 
 def maxset(V, E):
@@ -154,4 +155,4 @@ def maxset(V, E):
         return max(1 + maxset(temp1, E1), maxset(temp2, E2))
 
     # just so that it compiles for the time being ...
-    return 0
+    return len(naive(V, fun.G_complement(V, E)))
