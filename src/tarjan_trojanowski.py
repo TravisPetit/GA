@@ -6,7 +6,7 @@ from math import floor
 def maxset(V, E):
     """ Retruns the cardinality of the maximum independent set in (V,E) """
 
-    # -- CASE: V == {}
+    # -- CASE: V={} --#
     if not V:
         return 0
 
@@ -19,7 +19,7 @@ def maxset(V, E):
         return temp
     v = fun.vertex_of_min_degree(V, E)
 
-    # -- CASE: DEG = 0 -- #
+    # -- CASE: DEG=0 -- #
     if fun.degree(v, V, E) == 0:
         temp = V - {v}
         return 1 + maxset(temp, fun.induced(temp, E))

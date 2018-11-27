@@ -90,8 +90,8 @@ def setup():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--i', help='Number of iterations', type=int, default=10)
-    parser.add_argument('--l', help='Lower bound (min) of vertices edges', type=int, default=10)
-    parser.add_argument('--u', help='Upper bound (max) of vertices edges', type=int, default=15)
+    parser.add_argument('--l', help='Lower bound (min) of vertices', type=int, default=10)
+    parser.add_argument('--u', help='Upper bound (max) of vertices', type=int, default=15)
     parser.add_argument('--d', help='Graph densities', type=int, default=0.6)
     args = parser.parse_args()
     ITERATIONS = args.i
