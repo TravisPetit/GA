@@ -36,8 +36,8 @@ class TestFunctions(unittest.TestCase):
         self.assertNotIn({1,2,3}, X)
 
 
-    def test_G_complement(self):
-        Ec = fun.G_complement(V, E)
+    def test_complement(self):
+        Ec = fun.complement(V, E)
         self.assertIn({7,8}, Ec)
         self.assertNotIn({1,2}, Ec)
 

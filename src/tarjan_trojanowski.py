@@ -155,4 +155,4 @@ def maxset(V, E):
         return max(1 + maxset(temp1, E1), maxset(temp2, E2))
 
     # just so that it compiles for the time being ...
-    return len(naive(V, fun.G_complement(V, E)))
+    return len(naive(V, fun.complement(V, E)))

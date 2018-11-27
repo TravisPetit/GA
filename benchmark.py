@@ -2,7 +2,7 @@
 from time import time
 from naive import naive
 from tarjan_trojanowski import maxset
-from functions import generate_random_graph, density, G_complement
+from functions import generate_random_graph, density, complement
 
 class Graph:
 
@@ -21,18 +21,18 @@ class Graph:
         self.__naive_time = round(end - start, 4)
 
         start = time()
-        Ec = G_complement(self.__V, self.__E)
+        Ec = complement(self.__V, self.__E)
         maxset(self.__V, Ec)
         end = time()
         self.__tar_troj_time = round(end - start, 4)
 
 
     def __repr__(self):
-        temp =  "Vertices: "         + str(len(self.__V))        + "\n"
-        temp += "Edges: "            + str(len(self.__E))        + "\n"
-        temp += "Graph Density: "    + str(self.__density)       + "\n"
-        temp += "Navie Time: "       + str(self.__naive_time)    + "\n"
-        temp += "Tar. & Tro. Time: " + str(self.__tar_troj_time) + "\n"
+        temp =  "Vertices: "       + str(len(self.__V))        + "\n"
+        temp += "Edges: "          + str(len(self.__E))        + "\n"
+        temp += "Graph Density: "  + str(self.__density)       + "\n"
+        temp += "Navie Time: "     + str(self.__naive_time)    + "\n"
+        temp += "Tar & Tro Time: " + str(self.__tar_troj_time) + "\n"
         temp += "----------\n"
         return temp
 
@@ -85,5 +85,5 @@ if __name__ == "__main__":
     ITERATIONS = 10
     LOWER      = 10
     UPPER      = 15
-    DENSITY    = 0.3
+    DENSITY    = 0.6
     setup()

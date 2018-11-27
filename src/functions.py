@@ -12,7 +12,7 @@ def powerset(S):
 
 
 def is_clique(S, E):
-    """ Returns True if S is a clique E """
+    """ Returns True if S is a clique in E """
     SxS = asymetric_tuples(S)
     for pair in SxS:
         if pair not in E:
@@ -30,7 +30,7 @@ def asymetric_tuples(S):
     return temp
 
 
-def G_complement(V, E):
+def complement(V, E):
     """ Returns E complement """
     temp = []
     VxV = asymetric_tuples(V)
@@ -98,7 +98,7 @@ def connected_components(V, E):
 
 def induced(S, E):
     """ Returns E(S):= graph induced by S which is a subset of E """
-    return list(filter(lambda pair: pair.issubset(set(S)) , E))
+    return list(filter(lambda pair: pair.issubset(S) , E))
 
 
 def vertex_of_min_degree(V, E):
