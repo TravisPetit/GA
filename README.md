@@ -12,6 +12,8 @@ It also consists of a function that compares the runtime of this algorithm with 
 ## Usage
 If it is your first time using this program, run `sh setup.sh` and restart your terminal. To create a benchmark .txt file run `python3 benchmark.py`.
 
+You may change the default behavior of `benchmark.py`. To do so run `python3 benchmark.py --help` to read about the possible commands.
+
 ## FAQ
 **Q:** Where can I find the pseudo code for this algorithm?
 
