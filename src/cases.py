@@ -13,5 +13,3 @@ def case_3_4_2_2(A1c, A2c, A3c):
     if len(A2c & A3c) > temp:
         return A2c, A3c
     raise Exception("Case 3.4.2.2: no such set.")
-
-#case_3_4_2_2(set(),set(),set())
