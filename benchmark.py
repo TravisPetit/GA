@@ -1,4 +1,5 @@
 #from threading import *
+import argparse
 from time import time
 from naive import naive
 from tarjan_trojanowski import maxset
@@ -76,14 +77,25 @@ def setup():
         #child = t.start()
         graph.evaluate()
     f = open("benchmark.txt", "w+")
+    f.write("INTERATIONS: " + str(ITERATIONS) + "\n")
+    f.write("VERTICES UPPER BOUND: " + str(LOWER) + "\n")
+    f.write("VERTICES LOWER BOUND: " + str(UPPER) + "\n")
+    f.write("GRAPH AVERAGE DENSITY: " + str(DENSITY) + "\n")
+    f.write("----------\n")
     for graph in graphs:
         f.write(str(graph))
     f.close()
 
 
 if __name__ == "__main__":
-    ITERATIONS = 10
-    LOWER      = 10
-    UPPER      = 15
-    DENSITY    = 0.6
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--i', help='Number of iterations', type=int, default=10)
+    parser.add_argument('--l', help='Lower bound (min) of vertices edges', type=int, default=10)
+    parser.add_argument('--u', help='Upper bound (max) of vertices edges', type=int, default=15)
+    parser.add_argument('--d', help='Graph densities', type=int, default=0.6)
+    args = parser.parse_args()
+    ITERATIONS = args.i
+    LOWER      = args.l
+    UPPER      = args.u
+    DENSITY    = args.d
     setup()
