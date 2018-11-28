@@ -15,12 +15,22 @@ class Graph:
         self.__tar_troj_time = None
 
 
-    def evaluate(self):
+    def evaluate_times(self):
+        """ Gets the times for the naive and tar & troj algorithms """
+        self.evaluate__naive_time()
+        self.evaluate_tar_troj_time()
+
+
+    def evaluate__naive_time(self):
+        """ Computes the time for the naive algorithm """
         start = time()
         naive(self.__V, self.__E)
         end = time()
         self.__naive_time = round(end - start, 4)
 
+
+    def evaluate_tar_troj_time(self):
+        """ Computes the time for the tarjan and trojanowsi's algorithm """
         start = time()
         Ec = complement(self.__V, self.__E)
         maxset(self.__V, Ec)
@@ -75,13 +85,13 @@ def setup():
         #thread_lock.acquire()
         #t = Thread(target=graph.evaluate)
         #child = t.start()
-        graph.evaluate()
+        graph.evaluate_times()
     f = open("benchmark.txt", "w+")
     f.write("+-----------------------+\n")
     f.write("|Iterations:         " + str(ITERATIONS) + " |\n")
     f.write("|Vertex lower bound: " + str(LOWER)      + " |\n")
     f.write("|Vertex upper bound: " + str(UPPER)      + " |\n")
-    f.write("|Average density:    " + str(DENSITY)    + "|\n")
+    f.write("|Average density:    " + str(round(DENSITY, 2))    + "|\n")
     f.write("+-----------------------+\n\n")
     for graph in graphs:
         f.write(str(graph))
@@ -93,7 +103,7 @@ if __name__ == "__main__":
     parser.add_argument('--i', help='Number of iterations', type=int, default=10)
     parser.add_argument('--l', help='Lower bound (min) of vertices', type=int, default=10)
     parser.add_argument('--u', help='Upper bound (max) of vertices', type=int, default=15)
-    parser.add_argument('--d', help='Graph densities', type=int, default=0.6)
+    parser.add_argument('--d', help='Graph densities', type=float, default=0.6)
     args = parser.parse_args()
     ITERATIONS = args.i
     LOWER      = args.l
