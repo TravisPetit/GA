@@ -29,10 +29,10 @@ class Graph:
 
 
     def __repr__(self):
-        temp =  "Vertices: "       + str(len(self.__V))        + "\n"
-        temp += "Edges: "          + str(len(self.__E))        + "\n"
-        temp += "Graph Density: "  + str(self.__density)       + "\n"
-        temp += "Navie Time: "     + str(self.__naive_time)    + "\n"
+        temp =  "Vertices:       " + str(len(self.__V))        + "\n"
+        temp += "Edges:          " + str(len(self.__E))        + "\n"
+        temp += "Graph Density:  " + str(self.__density)       + "\n"
+        temp += "Navie Time:     " + str(self.__naive_time)    + "\n"
         temp += "Tar & Tro Time: " + str(self.__tar_troj_time) + "\n"
         temp += "----------\n"
         return temp
@@ -77,11 +77,12 @@ def setup():
         #child = t.start()
         graph.evaluate()
     f = open("benchmark.txt", "w+")
-    f.write("INTERATIONS: " + str(ITERATIONS) + "\n")
-    f.write("VERTEX LOWER BOUND: " + str(LOWER) + "\n")
-    f.write("VERTEX UPPER BOUND: " + str(UPPER) + "\n")
-    f.write("GRAPH AVERAGE DENSITY: " + str(DENSITY) + "\n")
-    f.write("##########\n")
+    f.write("+-----------------------+\n")
+    f.write("|Iterations:         " + str(ITERATIONS) + " |\n")
+    f.write("|Vertex lower bound: " + str(LOWER)      + " |\n")
+    f.write("|Vertex upper bound: " + str(UPPER)      + " |\n")
+    f.write("|Average density:    " + str(DENSITY)    + "|\n")
+    f.write("+-----------------------+\n\n")
     for graph in graphs:
         f.write(str(graph))
     f.close()
