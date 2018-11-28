@@ -1,7 +1,7 @@
 # Tarjan and Trojanowski's algorithm
-This consists of an implementation of the famous Tarjan and Torjanowski's algorithm that finds the maximum set in a graph in O(2^(n/3)).
+This consists of an implementation of the famous Tarjan and Torjanowski's algorithm that finds the maximum set in a graph in <a href="https://www.codecogs.com/eqnedit.php?latex=O(2^{\frac{|V|}{3}})" target="_blank"><img src="https://latex.codecogs.com/svg.latex?O(2^{\frac{|V|}{3}})" title="O(2^{\frac{|V|}{3}})" /></a>
+.
 It also consists of a function that compares the runtime of this algorithm with the naive approach at finding maximum cliques.
-
 ## Requirements
 * Python 3
 * Unix-based OS
@@ -13,6 +13,8 @@ It also consists of a function that compares the runtime of this algorithm with 
 If it is your first time using this program, run `sh setup.sh` and restart your terminal. To create a benchmark .txt file run `python3 benchmark.py`.
 
 You may change the default behavior of `benchmark.py`. To do so run `python3 benchmark.py --help` to read about the possible commands.
+
+This is still work in progress so you may get an error when running the benchmark script, if that were to occur simply re-run the script until you get no errors.
 
 ## FAQ
 **Q:** Where can I find the pseudo code for this algorithm?
