@@ -8,6 +8,7 @@ def powerset(S):
         for subset in combinations(S, n):
             subset = set(subset)
             powerset.append(subset)
+    powerset.sort(key=len, reverse=True)
     return powerset
 
 
