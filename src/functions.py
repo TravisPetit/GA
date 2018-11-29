@@ -120,7 +120,7 @@ def for_all(S, f):
 
 def density(V,E):
     """ Returns the graph density which is a number in the intervall [0,1] """
-    if not V:
+    if len(V) <= 1:
         return 0
     numerator = 2 * len(E)
     denominator = len(V) * (len(V) - 1)
