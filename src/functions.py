@@ -2,7 +2,7 @@ from random import random, randint, shuffle
 from itertools import combinations
 
 def powerset(S):
-    """ Returns a list with all the possible subsets of S """
+    """ Returns a (sorted) list with all the possible subsets of S """
     powerset = []
     for n in range(len(S) + 1):
         for subset in combinations(S, n):
