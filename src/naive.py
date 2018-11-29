@@ -5,5 +5,5 @@ def naive(V, E):
     pset = fun.powerset(V)
     for subset in pset:
         if fun.is_clique(subset, E):
-            subset
+            return subset
     return set()
