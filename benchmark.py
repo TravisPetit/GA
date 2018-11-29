@@ -22,7 +22,7 @@ class Graph:
 
 
     def evaluate__naive_time(self):
-        """ Computes the time for the naive algorithm """
+        """ Computes the time for the naive algorithm """
         start = time()
         naive(self.__V, self.__E)
         end = time()
@@ -30,7 +30,7 @@ class Graph:
 
 
     def evaluate_tar_troj_time(self):
-        """ Computes the time for the tarjan and trojanowsi's algorithm """
+        """ Computes the time for the tarjan and trojanowsi's algorithm """
         start = time()
         Ec = complement(self.__V, self.__E)
         maxset(self.__V, Ec)
@@ -73,26 +73,42 @@ class Graph:
         return self.__density
 
 
+def average(graphs):
+    """ Returns the average runtime of the naive and Tar and Tro runtime """
+    n_time = 0
+    tnt_time = 0
+    for graph in graphs:
+        n_time   += graph.naive_time
+        tnt_time += graph.tar_troj_time
+    n_time   /= len(graphs)
+    tnt_time /= len(graphs)
+    return n_time, tnt_time
+
 
 def setup():
-    #thread_cap = 3
-    #thread_lock = BoundedSemaphore(value=thread_cap)
     graphs = []
     for i in range(ITERATIONS):
         V, E = generate_random_graph(DENSITY, LOWER, UPPER)
         graphs.append(Graph(V, E))
-    for graph in graphs:
-        #thread_lock.acquire()
-        #t = Thread(target=graph.evaluate)
-        #child = t.start()
-        graph.evaluate_times()
+        graphs[i].evaluate_times()
+
+    n_time, tnt_time = average(graphs)
+    n_time   = round(n_time, 4)
+    tnt_time = round(tnt_time, 4)
+
     f = open("benchmark.txt", "w+")
-    f.write("+-----------------------+\n")
-    f.write("|Iterations:         " + str(ITERATIONS) + " |\n")
-    f.write("|Vertex lower bound: " + str(LOWER)      + " |\n")
-    f.write("|Vertex upper bound: " + str(UPPER)      + " |\n")
-    f.write("|Average density:    " + str(round(DENSITY, 2))    + "|\n")
-    f.write("+-----------------------+\n\n")
+    f.write("+------------------------------+\n")
+    f.write("|Iterations:                " + str(ITERATIONS)        + " |\n")
+    f.write("|Vertex lower bound:        " + str(LOWER)             + " |\n")
+    f.write("|Vertex upper bound:        " + str(UPPER)             + " |\n")
+    f.write("|Average density:           " + str(round(DENSITY, 2)) + "|\n")
+    f.write("+------------------------------+\n\n")
+
+    f.write("+---------------------------------+\n")
+    f.write("|Average runtime naive:     " + str(n_time)            + "|\n")
+    f.write("|Average runtime Tar & Tro: " + str(tnt_time)          + "|\n")
+    f.write("+---------------------------------+\n\n")
+
     for graph in graphs:
         f.write(str(graph))
     f.close()
