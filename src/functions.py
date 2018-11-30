@@ -118,6 +118,7 @@ def for_all(S, f):
             return False
     return True
 
+
 def density(V,E):
     """ Returns the graph density which is a number in the intervall [0,1] """
     if len(V) <= 1:
@@ -125,3 +126,15 @@ def density(V,E):
     numerator = 2 * len(E)
     denominator = len(V) * (len(V) - 1)
     return numerator / denominator
+
+
+def three_two_domination(A1c, A2c, A3c):
+    """ Returns the Aic, Ajc such that |Aic & Ajc| > |A1c & A2c & A3c| + 2. May return None """
+    temp = len(A1c & A2c & A3c) + 2
+    if len(A1c & A2c) > temp:
+        return A1c, A2c
+    if len(A1c & A3c) > temp:
+        return A1c, A3c
+    if len(A2c & A3c) > temp:
+        return A2c, A3c
+    return None
