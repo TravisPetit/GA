@@ -17,11 +17,11 @@ class Graph:
 
     def evaluate_times(self):
         """ Gets the times for the naive and tar & troj algorithms """
-        self.evaluate__naive_time()
+        self.evaluate_naive_time()
         self.evaluate_tar_troj_time()
 
 
-    def evaluate__naive_time(self):
+    def evaluate_naive_time(self):
         """ Computes the time for the naive algorithm """
         start = time()
         naive(self.__V, self.__E)
