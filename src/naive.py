@@ -1,9 +1,7 @@
-import functions as fun
+from functions import powerset, is_clique, generate_random_graph
 
 def naive(V, E):
     """ Returns the biggest clique in V """
-    pset = fun.powerset(V)
-    for subset in pset:
-        if fun.is_clique(subset, E):
+    for subset in powerset(V):
+        if is_clique(subset, E):
             return subset
-    return set()
