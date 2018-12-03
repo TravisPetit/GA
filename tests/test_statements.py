@@ -28,14 +28,22 @@ class TestStatements(unittest.TestCase):
     def test_ST_2_2(self):
         V = {1,2,3,4,5}
         E = [{1,3}, {1,4}, {2,4}, {1,5}, {3,5}, {1,2}]
-        X = maxset(V,E)
+        X = maxset(V, E)
         self.assertEqual(X, 2)
+
 
     def test_ST_2_3(self):
         V = {1,2,3,4,5}
         E = [{1,2}, {1,3}, {1,4}, {2,5}, {3,5}, {4,5}]
-        X = maxset(V,E)
+        X = maxset(V, E)
         self.assertEqual(X, 3)
+
+
+    def test_ST_3_2(self):
+        V = {1, 2, 3, 4, 5}
+        E = [{1, 3}, {2, 4}, {2, 3}, {4, 5}, {2, 5}, {1, 2}, {1, 4}, {3, 5}]
+        X = maxset(V, E)
+        self.assertEqual(X, 2)
 
 
 if __name__ == '__main__':

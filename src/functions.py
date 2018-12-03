@@ -41,7 +41,7 @@ def complement(V, E):
     return temp
 
 
-def generate_random_graph(p=0.5, lower = 1, upper=15):
+def generate_random_graph(p=0.5, lower=1, upper=15):
     """ Generates a random graph using the Erdős–Rényi Model """
     V = {x+1 for x in range (randint(lower, upper))}
     E = []
@@ -52,9 +52,9 @@ def generate_random_graph(p=0.5, lower = 1, upper=15):
     return V, E
 
 
-def generate_graph_of_degree(n):
+def generate_graph_of_degree(n, lower=1, upper=15):
     """ Generates a random graph where all the vertices have at most degree n """
-    V = {x+1 for x in range (randint(1,15))}
+    V = {x+1 for x in range (randint(lower,upper))}
     E = []
     for pair in asymetric_tuples(V):
         temp = list(pair)

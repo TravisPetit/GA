@@ -12,7 +12,6 @@ def maxset(V, E):
 
     # -- STATEMENT 0 -- #
     components = fun.connected_components(V, E)
-    #print(len(components))
     if len(components) > 1:
         temp = 0
         for connected_subgraph in components:
@@ -66,11 +65,31 @@ def maxset(V, E):
             temp = V - {v,w1,w2,w3}
             return 1 + maxset(temp, fun.induced(temp, E))
 
-    # -- STATEMENT 3.2 -- #
-        elif ({w1,w2} in E and {w1,w3} in E) or ({w1,w3} in E and {w2,w3} in E) or ({w1,w2} in E and {w2,w3} in E):
+    # -- STATEMENT 3.2 Part 1 -- #
+        elif {w1,w2} in E and {w1,w3} in E:
             temp1 = V - {v,w1,w2,w3}
             E1 = fun.induced(temp1, E)
-            temp2 = V - fun.adjacent(w2, V, E) - fun.adjacent(w3, V, E)
+            # Again, according to the paper the - {w2} and - {w3} should not be here
+            # And yet these additions are necessary for the algorithm to work correctly
+            temp2 = V - fun.adjacent(w2, V, E) - {w2} - fun.adjacent(w3, V, E) - {w3}
+            E2 = fun.induced(temp2, E)
+            return max(1 + maxset(temp1, E1), 2 + maxset(temp2, E2))
+
+    # -- STATEMENT 3.2 Part 2 -- #
+        elif {w1,w3} in E and {w2,w3} in E:
+            temp1 = V - {v,w1,w2,w3}
+            E1 = fun.induced(temp1, E)
+            # Same here
+            temp2 = V - fun.adjacent(w1, V, E) - {w1} - fun.adjacent(w2, V, E) - {w2}
+            E2 = fun.induced(temp2, E)
+            return max(1 + maxset(temp1, E1), 2 + maxset(temp2, E2))
+
+    # -- STATEMENT 3.2 Part 3 -- #
+        elif {w1,w2} in E and {w2,w3} in E:
+            temp1 = V - {v,w1,w2,w3}
+            E1 = fun.induced(temp1, E)
+            # And here
+            temp2 = V - fun.adjacent(w1, V, E) - {w1} - fun.adjacent(w3, V, E) - {w3}
             E2 = fun.induced(temp2, E)
             return max(1 + maxset(temp1, E1), 2 + maxset(temp2, E2))
 
