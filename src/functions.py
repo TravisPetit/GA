@@ -112,7 +112,7 @@ def vertex_of_min_degree(V, E):
 
 
 def for_all(S, f):
-    """ returns True if f evaluates to True for all inputs of S """
+    """ Returns True if f evaluates to True for all inputs of S """
     for s in S:
         if not f(s):
             return False
