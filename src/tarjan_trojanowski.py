@@ -36,10 +36,14 @@ def maxset(V, E):
 
     # -- STATEMENT 2.1 -- #
         if fun.for_all(V, lambda w: fun.degree(w, V, E) == 2):
-            return floor( len(V) / 2 )
+            return floor(len(V) / 2)
         else:
-            w1 = list(filter(lambda x: fun.degree(x, V, E) >= 3 and {v, x} in E, fun.adjacent(v, V, E)))[0]
-            w2 = list( fun.adjacent(v, V, E) - {w1} )[0]
+            v_, w1 = fun.three_two_degree(V, E)
+            w2 = list(fun.adjacent(v_, V, E) - {w1})[0]
+            #print("v_", v_)
+            #print("w_", w1)
+            #print("deg v_", fun.degree(v_, V, E))
+            #print("deg w1", fun.degree(w1, V, E))
 
     # -- STATEMENT 2.2 -- #
         if {w1, w2} in E:

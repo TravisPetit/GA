@@ -43,7 +43,7 @@ def complement(V, E):
 
 def generate_random_graph(p=0.5, lower = 1, upper=15):
     """ Generates a random graph using the Erdős–Rényi Model """
-    V = {x for x in range (randint(lower, upper))}
+    V = {x+1 for x in range (randint(lower, upper))}
     E = []
     for pair in asymetric_tuples(V):
         if p > random():
@@ -54,7 +54,7 @@ def generate_random_graph(p=0.5, lower = 1, upper=15):
 
 def generate_graph_of_degree(n):
     """ Generates a random graph where all the vertices have at most degree n """
-    V = {x for x in range (randint(1,15))}
+    V = {x+1 for x in range (randint(1,15))}
     E = []
     for pair in asymetric_tuples(V):
         temp = list(pair)
@@ -138,3 +138,19 @@ def three_two_domination(A1c, A2c, A3c):
     if len(A2c & A3c) > temp:
         return A2c, A3c
     return None
+
+
+def three_two_degree(V, E):
+    """ Returns the (v,w) such that {v,w} in E and deg(v) = 2 and deg(w) >= 3 """
+    def temp(edge):
+        temp = list(edge)
+        v, w = temp[0], temp[1]
+        return degree(v, V, E) == 2 and degree(w, V, E) >= 3 or degree(w, V, E) == 2 and degree(v, V, E) >= 3
+
+    X = list(filter(temp, E))
+    if not X:
+        raise Exception("Three two degree: no such elements")
+    v, w = X[0]
+    if degree(v, V, E) == 2:
+        return v, w
+    return w, v
