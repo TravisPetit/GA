@@ -19,7 +19,7 @@ This is still work in progress so you may get an error when running the benchmar
 ## FAQ
 **Q:** Where can I find the pseudo code for this algorithm?
 
-**A:** [Here.](http://i.stanford.edu/pub/cstr/reports/cs/tr/76/550/CS-TR-76-550.pdf)
+**A:** [Here.](http://i.stanford.edu/pub/cstr/reports/cs/tr/76/550/CS-TR-76-550.pdf) Page seven.
 
 **Q:** Why is the set of edges defined as a list?
 
