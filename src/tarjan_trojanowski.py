@@ -12,6 +12,7 @@ def maxset(V, E):
 
     # -- STATEMENT 0 -- #
     components = fun.connected_components(V, E)
+    #print(len(components))
     if len(components) > 1:
         temp = 0
         for connected_subgraph in components:
@@ -40,20 +41,19 @@ def maxset(V, E):
         else:
             v_, w1 = fun.three_two_degree(V, E)
             w2 = list(fun.adjacent(v_, V, E) - {w1})[0]
-            #print("v_", v_)
-            #print("w_", w1)
-            #print("deg v_", fun.degree(v_, V, E))
-            #print("deg w1", fun.degree(w1, V, E))
 
     # -- STATEMENT 2.2 -- #
         if {w1, w2} in E:
-            temp = V - {v,w1,w2}
+            temp = V - {v_,w1,w2}
             return 1 + maxset(temp, fun.induced(temp, E))
 
     # -- STATEMENT 2.3 -- #
         elif {w1, w2} not in E:
-            temp1 = V - {v,w1,w2}
-            temp2 = V - fun.adjacent(w1, V, E) - fun.adjacent(w2, V, E)
+            temp1 = V - {v_,w1,w2}
+            # According to the paper this should be V - adj(w1) - adj(w2) however that is WRONG!!!!!!!!!
+            # You owe me one, Tarjan and Trojanowski
+            # Isn't it lovely to spend all day debugging one line of code?
+            temp2 = V - fun.adjacent(w1, V, E) - {w1} - fun.adjacent(w2, V, E) - {w2}
             return max(1 + maxset(temp1, fun.induced(temp1, E)), 2 + maxset(temp2, fun.induced(temp2, E)))
 
     # -- STATMENT 3 -- #
