@@ -149,7 +149,7 @@ def n_k_degree(n, k, V, E):
 
     X = list(filter(temp, E))
     if not X:
-        raise Exception("n k degree: no such elements")
+        raise Exception("{} {} degree: no such elements".format(n, k))
     v, w = X[0]
     if degree(v, V, E) == n:
         return v, w
