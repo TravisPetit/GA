@@ -93,11 +93,11 @@ class TestFunctions(unittest.TestCase):
                 self.assertLessEqual(fun.degree(v, V, E), i)
 
 
-    def test_three_two_degree(self):
-        v, w = fun.three_two_degree(V, E)
+    def test_n_k_degree(self):
+        v, w = fun.n_k_degree(2, 3, V, E)
         self.assertEqual(fun.degree(v, V, E), 2)
         self.assertGreaterEqual(fun.degree(w, V, E), 3)
-        self.assertRaises(Exception, lambda : fun.three_two_degree({1,2,3}, [{1, 3}]))
+        self.assertRaises(Exception, lambda : fun.n_k_degree({1,2,3}, [{1, 3}]))
 
 
 if __name__ == '__main__':

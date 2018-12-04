@@ -38,7 +38,7 @@ def maxset(V, E):
         if fun.for_all(V, lambda w: fun.degree(w, V, E) == 2):
             return floor(len(V) / 2)
         else:
-            v_, w1 = fun.three_two_degree(V, E)
+            v_, w1 = fun.n_k_degree(2, 3, V, E)
             w2 = list(fun.adjacent(v_, V, E) - {w1})[0]
 
     # -- STATEMENT 2.2 -- #
@@ -50,8 +50,6 @@ def maxset(V, E):
         elif {w1, w2} not in E:
             temp1 = V - {v_,w1,w2}
             # According to the paper this should be V - adj(w1) - adj(w2) however that is WRONG!!!!!!!!!
-            # You owe me one, Tarjan and Trojanowski
-            # Isn't it lovely to spend all day debugging one line of code?
             temp2 = V - fun.adjacent(w1, V, E) - {w1} - fun.adjacent(w2, V, E) - {w2}
             return max(1 + maxset(temp1, fun.induced(temp1, E)), 2 + maxset(temp2, fun.induced(temp2, E)))
 
@@ -79,7 +77,7 @@ def maxset(V, E):
         elif {w1,w3} in E and {w2,w3} in E:
             temp1 = V - {v,w1,w2,w3}
             E1 = fun.induced(temp1, E)
-            # Same here
+            # Same thing here
             temp2 = V - fun.adjacent(w1, V, E) - {w1} - fun.adjacent(w2, V, E) - {w2}
             E2 = fun.induced(temp2, E)
             return max(1 + maxset(temp1, E1), 2 + maxset(temp2, E2))
@@ -100,7 +98,7 @@ def maxset(V, E):
             A3c = V - {w1,w2,w3} - fun.adjacent(w3, V, E)
 
     # -- STATEMENT 3.3.1 -- #
-            #TODO
+            pass
 
     # -- STATEMENT 3.3.2 -- #
             if len(A1c & A3c) <= len(V) - 7 and len(A2c & A3c) <= len(V) - 7:
@@ -172,6 +170,22 @@ def maxset(V, E):
 
     # -- STATEMENT 3.4.3.3 -- #
                 pass
+
+    # -- STATEMENT 4 -- #
+    elif fun.degree(v, V, E) == 4:
+
+    # -- STATEMENT 4.1 -- #
+        if fun.for_all(V, lambda w : fun.degree(w, V, E) == 4):
+            pass
+
+    # -- STATEMENT 4.2 -- #
+        else:
+            v_, w = fun.n_k_degree(4, 5, V, E)
+            temp1 = V - {w} - fun.adjacent(w, V, E)
+            E1 = fun.induced(temp1, E)
+            temp2 = V - {w}
+            E2 = fun.induced(temp2, E)
+            return max(1 + maxset(temp1, E1), maxset(temp2, E2))
 
     # -- STATEMENT 5 -- #
     elif fun.for_all(V, lambda w : fun.degree(w, V, E) == 5):

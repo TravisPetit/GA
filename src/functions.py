@@ -140,17 +140,17 @@ def three_two_domination(A1c, A2c, A3c):
     return None
 
 
-def three_two_degree(V, E):
-    """ Returns the (v,w) such that {v,w} in E and deg(v) = 2 and deg(w) >= 3 """
+def n_k_degree(n, k, V, E):
+    """ Returns the (v,w) such that {v,w} in E and deg(v) = n and deg(w) >= k """
     def temp(edge):
         temp = list(edge)
         v, w = temp[0], temp[1]
-        return degree(v, V, E) == 2 and degree(w, V, E) >= 3 or degree(w, V, E) == 2 and degree(v, V, E) >= 3
+        return degree(v, V, E) == n and degree(w, V, E) >= k or degree(w, V, E) == n and degree(v, V, E) >= k
 
     X = list(filter(temp, E))
     if not X:
-        raise Exception("Three two degree: no such elements")
+        raise Exception("n k degree: no such elements")
     v, w = X[0]
-    if degree(v, V, E) == 2:
+    if degree(v, V, E) == n:
         return v, w
     return w, v
