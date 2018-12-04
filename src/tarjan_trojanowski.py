@@ -136,7 +136,7 @@ def maxset(V, E):
                     return max(1 + maxset(temp1, E1), 3 + maxset(temp2, E2))
 
     # -- STATEMENT 3.4.2.2 -- #
-                elif cases.case_3_4_2_2:
+                elif cases.case_3_4_2_2(A1c, A2c, A3c):
                     Aic, Ajc = fun.three_two_domination(A1c, A2c, A3c)
                     temp1 = V - {v,w1,w2,w3}
                     E1 = fun.induced(temp1, E)
