@@ -98,16 +98,16 @@ def setup():
 
     f = open("benchmark.txt", "w+")
     f.write("+------------------------------+\n")
-    f.write("|Iterations:                " + str(ITERATIONS)        + " |\n")
-    f.write("|Vertex lower bound:        " + str(LOWER)             + " |\n")
-    f.write("|Vertex upper bound:        " + str(UPPER)             + " |\n")
-    f.write("|Average density:           " + str(round(DENSITY, 2)) + "|\n")
-    f.write("+------------------------------+\n\n")
+    f.write("|Iterations: {0:18}|\n".format(ITERATIONS))
+    f.write("|Vertex lower bound: {0:10}|\n".format(LOWER))
+    f.write("|Vertex upper bound: {0:10}|\n".format(UPPER))
+    f.write("|Average density: {0:13}|\n".format(round(DENSITY, 2)))
+    f.write("+------------------------------+\n")
 
-    f.write("+---------------------------------+\n")
-    f.write("|Average runtime naive:     " + str(n_time)            + "|\n")
-    f.write("|Average runtime Tar & Tro: " + str(tnt_time)          + "|\n")
-    f.write("+---------------------------------+\n\n")
+    f.write("+------------------------------+\n")
+    f.write("|Average time naive: {0:10}|\n".format(n_time))
+    f.write("|Average time Tar & Tro: {0:6}|\n".format(tnt_time))
+    f.write("+------------------------------+\n\n")
 
     for graph in graphs:
         f.write(str(graph))
