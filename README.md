@@ -6,7 +6,7 @@ It also consists of a function that compares the runtime of this algorithm with 
 * Python 3
 
 ## Usage
-If it is your first time using this program, add the src folder to your PYTHONPATH enviroment variable. If you use Linux or MacOS this can be done by frist running `sh setup.sh` and then restarting your terminal.
+If it is your first time using this program, add the src folder to your PYTHONPATH enviroment variable. If you use Linux or MacOS you can do this by running `sh setup.sh` and then restarting your terminal.
 
 To create a benchmark .txt file run `python3 benchmark.py`.
 
