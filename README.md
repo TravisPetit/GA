@@ -4,15 +4,13 @@ This consists of an implementation of the famous Tarjan and Torjanowski's algori
 It also consists of a function that compares the runtime of this algorithm with the naive approach at finding maximum cliques.
 ## Requirements
 * Python 3
-* Unix-based OS
-
-## Dependencies
-* Itertools (I believe this is part of the standart library in python 3+)
 
 ## Usage
-If it is your first time using this program, run `sh setup.sh` and restart your terminal. To create a benchmark .txt file run `python3 benchmark.py`.
+If it is your first time using this program, add the src folder to your PYTHONPATH enviroment variable. If you use Linux or MacOS this can be done by frist running `sh setup.sh` and then restarting your terminal.
 
-You may change the default behavior of `benchmark.py`. To do so run `python3 benchmark.py --help` to read about the possible commands.
+To create a benchmark .txt file run `python3 benchmark.py`.
+
+You may change the default behavior of the benchmark program. To do so run `python3 benchmark.py --help` to read about the possible commands.
 
 This is still work in progress so you may get an error when running the benchmark script, if that were to occur simply re-run the script until you get no errors.
 
