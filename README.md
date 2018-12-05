@@ -1,5 +1,5 @@
 # Tarjan and Trojanowski's algorithm
-This consists of an implementation of the famous Tarjan and Torjanowski's algorithm that finds the maximum set in a graph in <a href="https://www.codecogs.com/eqnedit.php?latex=O(2^{\frac{|V|}{3}})" target="_blank"><img src="https://latex.codecogs.com/svg.latex?O(2^{\frac{|V|}{3}})" title="O(2^{\frac{|V|}{3}})" /></a>
+This consists of an implementation of the famous Tarjan and Torjanowski's algorithm that finds the maximum independent set in a graph in <a href="https://www.codecogs.com/eqnedit.php?latex=O(2^{\frac{|V|}{3}})" target="_blank"><img src="https://latex.codecogs.com/svg.latex?O(2^{\frac{|V|}{3}})" title="O(2^{\frac{|V|}{3}})" /></a>
 .
 It also consists of a function that compares the runtime of this algorithm with the naive approach at finding maximum cliques.
 ## Requirements
