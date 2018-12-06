@@ -1,4 +1,3 @@
-#from threading import *
 import argparse
 from time import time
 from naive import naive

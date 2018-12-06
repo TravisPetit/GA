@@ -49,7 +49,9 @@ def maxset(V, E):
     # -- STATEMENT 2.3 -- #
         elif {w1, w2} not in E:
             temp1 = V - {v_,w1,w2}
-            # According to the paper this should be V - adj(w1) - adj(w2) however that is WRONG!!!!!!!!!
+            # According to the paper this should be V - adj(w1) - adj(w2).
+            # The authors seem to have forgotten about the - {w1} and - {w2}
+            # because without them the algorithm does not work correctly
             temp2 = V - fun.adjacent(w1, V, E) - {w1} - fun.adjacent(w2, V, E) - {w2}
             return max(1 + maxset(temp1, fun.induced(temp1, E)), 2 + maxset(temp2, fun.induced(temp2, E)))
 
@@ -68,7 +70,7 @@ def maxset(V, E):
             temp1 = V - {v,w1,w2,w3}
             E1 = fun.induced(temp1, E)
             # Again, according to the paper the - {w2} and - {w3} should not be here
-            # And yet these additions are necessary for the algorithm to work correctly
+            # and yet these additions are necessary for the algorithm to work correctly
             temp2 = V - fun.adjacent(w2, V, E) - {w2} - fun.adjacent(w3, V, E) - {w3}
             E2 = fun.induced(temp2, E)
             return max(1 + maxset(temp1, E1), 2 + maxset(temp2, E2))
@@ -210,5 +212,5 @@ def maxset(V, E):
         E2 = fun.induced(temp2, E)
         return max(1 + maxset(temp1, E1), maxset(temp2, E2))
 
-    # just so that it compiles for the time being ...
+    # Default case for non-implemented statements
     return len(naive(V, fun.complement(V, E)))
