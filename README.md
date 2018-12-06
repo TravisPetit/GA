@@ -30,3 +30,16 @@ This is still work in progress so you may get an error when running the benchmar
 **Q:** Would it not make more sense to define graphs as a dictionaries (vertices->edges)?
 
 **A:** Yes and no, that has it's drawbacks too. It would make some tasks easier and some harder.
+
+## Notes
+Due to time constraints, I was no able to implement the the following statements:
+* 3.3.1
+* 3.4.3.3
+* 3.4.3.4.*
+* 4.1.*
+
+For such cases I have tweaked the program such that it uses the naive approach at finding maximum independent sets.
+
+The main algorithm is also not bug-free. From my expereince it works about 90 to 95% of times.
+Due to time constraints I was not able to fully debug the algorithm.
+It is possible that the error lies in pseudo code and not the implementation, since I noticed (and fixed) a two errors in it already in the statements 2.3 and 3.2.
