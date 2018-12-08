@@ -115,12 +115,12 @@ def setup():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--i', help='Number of iterations', type=int, default=10)
-    parser.add_argument('--l', help='Lower bound (min) of vertices', type=int, default=10)
-    parser.add_argument('--u', help='Upper bound (max) of vertices', type=int, default=15)
+    parser.add_argument('--n', help='Number of graphs', type=int, default=10)
+    parser.add_argument('--l', help='Lower bound (min) of vertices per graph', type=int, default=10)
+    parser.add_argument('--u', help='Upper bound (max) of vertices pre graph', type=int, default=15)
     parser.add_argument('--d', help='Graph densities', type=float, default=0.6)
     args = parser.parse_args()
-    ITERATIONS = args.i
+    ITERATIONS = args.n
     LOWER      = args.l
     UPPER      = args.u
     DENSITY    = args.d
