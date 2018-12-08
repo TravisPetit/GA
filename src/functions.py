@@ -30,8 +30,7 @@ def asymetric_tuples(S):
 def complement(V, E):
     """ Returns E complement """
     temp = []
-    VxV = asymetric_tuples(V)
-    for pair in VxV:
+    for pair in asymetric_tuples(V):
         if not pair in E:
             temp.append(pair)
     return temp
