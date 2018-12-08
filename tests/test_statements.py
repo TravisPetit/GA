@@ -4,6 +4,11 @@ import functions as fun
 import unittest
 
 class TestStatements(unittest.TestCase):
+    """
+    This unit test class consists of a reverse engineering for the
+    Tarjan and Trojanowski algorithm such that the graphs in the
+    unit tests trigger only specific statements.
+    """
 
     def test_empty(self):
         X = maxset(set(), [])
