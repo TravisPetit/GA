@@ -14,11 +14,7 @@ def powerset(S):
 
 def is_clique(S, E):
     """ Returns True if S is a clique in E """
-    SxS = asymetric_tuples(S)
-    for pair in SxS:
-        if pair not in E:
-            return False
-    return True
+    return for_all(asymetric_tuples(S), lambda edge : edge in E)
 
 
 def asymetric_tuples(S):
