@@ -1,6 +1,6 @@
 # Tarjan and Trojanowski's algorithm
-This is an implementation of the famous Tarjan and Torjanowski's algorithm that finds maximum independent sets in <a href="https://www.codecogs.com/eqnedit.php?latex=O(2^{\frac{|V|}{3}})" target="_blank"><img src="https://latex.codecogs.com/svg.latex?O(2^{\frac{|V|}{3}})" title="O(2^{\frac{|V|}{3}})" /></a>
- set up in way such that it finds the cardinality of the maximum clique in a given graph.
+This is an implementation of the Tarjan and Torjanowski's algorithm that finds maximum independent sets in <a href="https://www.codecogs.com/eqnedit.php?latex=O(2^{\frac{|V|}{3}})" target="_blank"><img src="https://latex.codecogs.com/svg.latex?O(2^{\frac{|V|}{3}})" title="O(2^{\frac{|V|}{3}})" /></a>
+ set up in way such that it finds the cardinality of the maximum clique for a given graph.
 It also consists of a script that compares the runtime of this algorithm with the naive approach at finding maximum cliques.
 ## Requirements
 * Python 3
