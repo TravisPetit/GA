@@ -1,7 +1,7 @@
 # Tarjan and Trojanowski's algorithm
-This consists of an implementation of the famous Tarjan and Torjanowski's algorithm that finds the maximum independent set in a graph in <a href="https://www.codecogs.com/eqnedit.php?latex=O(2^{\frac{|V|}{3}})" target="_blank"><img src="https://latex.codecogs.com/svg.latex?O(2^{\frac{|V|}{3}})" title="O(2^{\frac{|V|}{3}})" /></a>
-.
-It also consists of a function that compares the runtime of this algorithm with the naive approach at finding maximum cliques.
+This is an implementation of the famous Tarjan and Torjanowski's algorithm that finds maximum independent sets in <a href="https://www.codecogs.com/eqnedit.php?latex=O(2^{\frac{|V|}{3}})" target="_blank"><img src="https://latex.codecogs.com/svg.latex?O(2^{\frac{|V|}{3}})" title="O(2^{\frac{|V|}{3}})" /></a>
+ set up in way such that it finds the cardinality of the maximum clique in a given graph.
+It also consists of a script that compares the runtime of this algorithm with the naive approach at finding maximum cliques.
 ## Requirements
 * Python 3
 
@@ -10,9 +10,7 @@ If it is your first time using this program, add the src folder to your PYTHONPA
 
 To create a benchmark .txt file run `python3 benchmark.py`.
 
-You may change the default behavior of the benchmark program. To do so run `python3 benchmark.py --help` to read about the possible commands.
-
-This is still work in progress so you may get an error when running the benchmark script, if that were to occur simply re-run the script until you get no errors.
+You may change the default behavior of the benchmark script. To do so run `python3 benchmark.py --help` to read about the possible commands.
 
 ## FAQ
 **Q:** Where can I find the pseudo code for this algorithm?
@@ -41,5 +39,4 @@ Due to time constraints, I was no able to implement the the following statements
 For such cases I have tweaked the program such that it uses the naive approach at finding maximum independent sets.
 
 The main algorithm is also not bug-free. From my expereince it works about 90 to 95% of times.
-Due to time constraints I was not able to fully debug the algorithm.
-It is possible that the error lies in pseudo code and not the implementation, since I noticed (and fixed) a two errors in it already in the statements 2.3 and 3.2.
+Due to time constraints I was not able to fully debug it. I suspect the error lies somewhere deep into statement 3.
